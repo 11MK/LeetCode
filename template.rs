@@ -4,7 +4,7 @@ impl Solution {
     // TODO: - SOLUTION
 }
 
-fn main 
+fn main() {
     println!("Solution:")
 }
 
