@@ -4,26 +4,31 @@ impl Solution {
     pub fn rotate(nums: &mut Vec<i32>, k: i32) {
         let l = nums.len() as i32;
         let k = if k > l {
-            (l - ( k % l )) as usize
+            (( k % l )-1) as usize
         } else {
             (k-1) as usize
         };
-        
         let (mut tmp, mut nxt)= (i32::MAX, *nums.first().unwrap());
         let mut moves = 0;
         let mut i = 0;
         while moves != nums.len() {
-            tmp = nums[i+k];
-            nums[i+k] = nxt;
+            let n = if i+k >= l as usize {
+                (i + k) % (l-1) as usize
+            } else {
+                i+k
+            };
+            tmp = nums[n];
+            nums[n] = nxt;
             nxt = tmp;
-            i += k;
+            i += n;
             moves += 1;
         }
     }
 }
 
 fn main() {
-    println!("Solution:")
+    Solution::rotate(&mut vec![1,2,3,4,5,6], 8);
+    Solution::rotate(&mut vec![1,2,3,4,5,6], 4);
 }
 
 #[cfg(test)]
