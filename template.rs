@@ -10,7 +10,6 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use super::Solution;
 
     #[test]
