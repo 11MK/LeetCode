@@ -2,28 +2,37 @@ pub struct Solution {}
 
 impl Solution {
     pub fn rotate(matrix: &mut Vec<Vec<i32>>) {
-        let (rows, cols): (usize, usize) = (matrix.len() - 1, matrix[0].len() - 1);
-        let (mut r, mut c): (usize, usize) = (0, 0);
-
-        let mut d = 1;
-        let mut tmp = matrix[0][0];
-        let mut moves = 0;
-        while moves < (matrix.len() * matrix[0].len()) {
-            if moves % 4 == 0 && moves != 0 {
-                if c == cols - d {
-                    r = d;
-                    c = d;
-                    d += 1;
-                } else {
-                    c += 1;
-                }
-                tmp = matrix[r][c];
+        // let (rows, cols): (usize, usize) = (matrix.len() - 1, matrix[0].len() - 1);
+        // let (mut r, mut c): (usize, usize) = (0, 0);
+        //
+        // let mut d = 1;
+        // let mut tmp = matrix[0][0];
+        // let mut moves = 0;
+        // while moves < (matrix.len() * matrix[0].len()) {
+        //     if moves % 4 == 0 && moves != 0 {
+        //         if c == cols - d {
+        //             r = d;
+        //             c = d;
+        //             d += 1;
+        //         } else {
+        //             c += 1;
+        //         }
+        //         tmp = matrix[r][c];
+        //     }
+        //     let (x, y) = (c, (rows as i32 - r as i32) as usize);
+        //     r = x;
+        //     c = y;
+        //     std::mem::swap(&mut tmp, &mut matrix[x][y]);
+        //     moves += 1;
+        // }
+        matrix.reverse();
+        
+        for i in 0..matrix.len() {
+            for j in 0..i {
+                let tmp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = tmp;
             }
-            let (x, y) = (c, (rows as i32 - r as i32) as usize);
-            r = x;
-            c = y;
-            std::mem::swap(&mut tmp, &mut matrix[x][y]);
-            moves += 1;
         }
     }
 }
